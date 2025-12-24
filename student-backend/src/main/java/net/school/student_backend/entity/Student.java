@@ -25,6 +25,7 @@ public class Student {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "age")
-    private  int age;
+    @Column(name = "age", nullable = false)
+    private int age;
+
 }
