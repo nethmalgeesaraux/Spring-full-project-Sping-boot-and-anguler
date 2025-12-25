@@ -44,4 +44,11 @@ public class StudentController {
         StudentDto studentDto = studentService.updateStudent(studentId, updateStudent);
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
+
+    //Build Delete Student REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable("id") Long studentId) {
+        studentService.deleteStudent(studentId);
+        return new ResponseEntity<>("Student deleted successfully!", HttpStatus.OK);
+    }
 }
