@@ -40,5 +40,19 @@ public class StudentImpl implements StudentService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public StudentDto updateStudent(Long studentId, StudentDto updateStudent) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new RuntimeException("Student not found with id: " + studentId));
+
+        student.setFirstName(updateStudent.getFirstName());
+        student.setLastName(updateStudent.getLastName());
+        student.setAge(updateStudent.getAge());
+
+        Student updatedStudent = studentRepository.save(student);
+        return StudentMapper.mapToStudentDto(updatedStudent);
+
+    }
+
 
 }
