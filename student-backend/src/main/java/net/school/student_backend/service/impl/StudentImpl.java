@@ -8,6 +8,9 @@ import net.school.student_backend.repository.StudentRepository;
 import net.school.student_backend.service.StudentService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class StudentImpl implements StudentService {
@@ -27,6 +30,14 @@ public class StudentImpl implements StudentService {
                 .orElseThrow(() -> new RuntimeException("Student not found with id: " + studentId));
         return StudentMapper.mapToStudentDto(student);
 
+    }
+
+    @Override
+    public List<StudentDto> getAllStudents() {
+        List<Student> students =studentRepository.findAll();
+        return students.stream()
+                .map(StudentMapper::mapToStudentDto)
+                .collect(Collectors.toList());
     }
 
 

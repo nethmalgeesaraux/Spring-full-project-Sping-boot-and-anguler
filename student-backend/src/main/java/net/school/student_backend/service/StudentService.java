@@ -2,7 +2,10 @@ package net.school.student_backend.service;
 
 import net.school.student_backend.dto.StudentDto;
 
+import java.util.List;
+
 public interface StudentService {
     StudentDto createStudent(StudentDto studentDto);
     StudentDto getStudentById(Long studentId);
+    List<StudentDto> getAllStudents();
 }
